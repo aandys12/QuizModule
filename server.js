@@ -54,7 +54,7 @@ function sendFailureEmbed(evaluator, password) {
         console.log("Sent failure embed to Discord");
     })*/
 
-    console.log(evaluator + " had the wrong password when requesting quiz questions!" + " (`" + password + "`)");
+    console.warn(evaluator + " had the wrong password when requesting quiz questions!" + " (`" + password + "`)");
 }
 
 function chooseQuestions(difficulty) {
