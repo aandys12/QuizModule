@@ -27,9 +27,10 @@ function buildFailureParams(evaluator, password) {
 
     return failureparams
 }
+*/
 
 function sendSuccessEmbed(evaluator, quiz) {
-    fetch(webhook, {
+    /*fetch(webhook, {
         method: "POST",
         headers: {
             'Content-type': 'application/json'
@@ -37,11 +38,13 @@ function sendSuccessEmbed(evaluator, quiz) {
         body: JSON.stringify(buildSuccessParams(evaluator, quiz))
     }).then(res => {
         console.log("Sent success embed to Discord");
-    })
+    })*/
+
+    console.log(evaluator + " requested the quiz questions!" + quiz);
 }
 
 function sendFailureEmbed(evaluator, password) {
-    fetch(webhook, {
+    /*fetch(webhook, {
         method: "POST",
         headers: {
             'Content-type': 'application/json'
@@ -49,8 +52,10 @@ function sendFailureEmbed(evaluator, password) {
         body: JSON.stringify(buildFailureParams(evaluator, password))
     }).then(res => {
         console.log("Sent failure embed to Discord");
-    })
-}*/
+    })*/
+
+    console.log(evaluator + " had the wrong password when requesting quiz questions!" + " (`" + password + "`)");
+}
 
 function chooseQuestions(difficulty) {
     var easyResult = [];
@@ -115,7 +120,7 @@ app.get('/quiz/:id/:evaluator', (request, response) => {
 
     if (id != quizPassword) {
         response.status(401).send({ message: "Invalid password, try again!" })
-        //sendFailureEmbed(evaluator, id);
+        sendFailureEmbed(evaluator, id);
         return;
     }
 
@@ -131,7 +136,7 @@ app.get('/quiz/:id/:evaluator', (request, response) => {
 
     var loggingString = "\n\nSent the following quiz:\n" + "**Easy**: " + toSendEasy + "\n**Medium**: " + toSendMed + "\n**Hard**: " + toSendHard;
 
-    //sendSuccessEmbed(evaluator, loggingString);
+    sendSuccessEmbed(evaluator, loggingString);
 
 });
 
