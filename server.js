@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 6000;
 
 const quizPassword = "Agreed2_Abrasion_Preppy_Display";
 
