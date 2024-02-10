@@ -4,6 +4,8 @@ const port = 5000;
 
 const quizPassword = process.env.quizPassword;
 
+const webhook = process.env.webhookUrl;
+
 const easyQs = process.env.easyQuestions;
 const mediumQs = process.env.mediumQuestions;
 const hardQs = process.env.hardQuestions;
@@ -12,7 +14,7 @@ const easyQuestions = easyQs.split(' -j- ');
 const mediumQuestions = mediumQs.split(' -j- ');
 const hardQuestions = hardQs.split(' -j- ');
 
-/*function buildSuccessParams(evaluator, quiz) {
+function buildSuccessParams(evaluator, quiz) {
     const successparams = {
         content: evaluator + " requested the quiz questions!" + quiz,
     }
@@ -27,10 +29,9 @@ function buildFailureParams(evaluator, password) {
 
     return failureparams
 }
-*/
 
 function sendSuccessEmbed(evaluator, quiz) {
-    /*fetch(webhook, {
+    fetch(webhook, {
         method: "POST",
         headers: {
             'Content-type': 'application/json'
@@ -38,13 +39,13 @@ function sendSuccessEmbed(evaluator, quiz) {
         body: JSON.stringify(buildSuccessParams(evaluator, quiz))
     }).then(res => {
         console.log("Sent success embed to Discord");
-    })*/
+    })
 
     console.log(evaluator + " requested the quiz questions!" + quiz);
 }
 
 function sendFailureEmbed(evaluator, password) {
-    /*fetch(webhook, {
+    fetch(webhook, {
         method: "POST",
         headers: {
             'Content-type': 'application/json'
@@ -52,7 +53,7 @@ function sendFailureEmbed(evaluator, password) {
         body: JSON.stringify(buildFailureParams(evaluator, password))
     }).then(res => {
         console.log("Sent failure embed to Discord");
-    })*/
+    })
 
     console.warn(evaluator + " had the wrong password when requesting quiz questions!" + " (`" + password + "`)");
 }
